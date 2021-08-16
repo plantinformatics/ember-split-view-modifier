@@ -1,4 +1,4 @@
-import { setModifierManager } from '@ember/modifier';
+import { setModifierManager, capabilities } from '@ember/modifier';
 import EmberObject from '@ember/object';
 import { assign } from '@ember/polyfills';
 import Split from 'split.js';
@@ -37,6 +37,7 @@ export function createSplit(el, args) {
 class SplitModifierManager {
   constructor(owner) {
     this.owner = owner;
+    this.capabilities = capabilities('3.13');
   }
 
   createModifier(factory, args) {
