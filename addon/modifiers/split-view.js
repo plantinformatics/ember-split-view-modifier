@@ -63,7 +63,16 @@ class SplitModifierManager {
 
 class SplitViewModifier extends EmberObject {
   didInsertElement(el, positional, args) {
+    const registerInstance = args.registerInstance;
+    if (registerInstance) {
+      delete args.registerInstance;
+    }
     this.splitInstance = createSplit(el, args);
+    console.log(this.splitInstance, registerInstance);
+    // window.PretzelFrontend.splitInstance = this.splitInstance;
+    if (registerInstance) {
+      registerInstance(this.splitInstance);
+    }
   }
 
   didUpdate(el, positional, args) {
