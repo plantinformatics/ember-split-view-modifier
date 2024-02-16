@@ -37,11 +37,15 @@ export function createSplit(el, args) {
 class SplitModifierManager {
   constructor(owner) {
     this.owner = owner;
-    this.capabilities = capabilities('3.13');
+    /* updated from 3.13 */
+    this.capabilities = capabilities('3.22');
   }
 
-  createModifier(factory, args) {
-    return factory.create(args);
+  createModifier(Definition, args) {
+    /** changed for 3.22, as indicated in :
+     * https://deprecations.emberjs.com/v3.x/#toc_manager-capabilities-modifiers-3-13
+     */
+    return new Definition(args);
   }
 
   installModifier(instance, element, args) {
